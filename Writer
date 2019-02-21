@@ -1,0 +1,21 @@
+#include <Wire.h>
+#include<String.h>
+
+void setup() {
+  Wire.begin(8);                // join i2c bus with address #8
+  Wire.onRequest(requestEvent); // register event
+  Serial.begin(9600);  // start serial for output
+}
+
+void loop() {
+  delay(100);
+}
+
+// function that executes whenever data is requested by master
+// this function is registered as an event, see setup()
+void requestEvent() {
+  String temp = "hello";
+  Wire.write("hello"); // respond with message of 6 bytes
+  Serial.println("hello");
+  // as expected by master
+}
